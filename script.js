@@ -1,32 +1,26 @@
-let title = "New Lesson";
-let screens = "Простые, Сложные, Интерактивные";
-let screenPrice = 150;
-let rollback = 33;
-let fullPrice = 150000;
-let adaptive = true;
+let title = prompt('Как называется ваш проект?');
+let screens = prompt('Какие типы экранов нужно разработать?');
+let screenPrice = +prompt('Сколько будет стоить данная работа?');
+let adaptive = confirm('Нужен ли адаптив на сайте?');
+let service1 = prompt('Какой дополнительный тип услуги нужен?');
+let servicePrice1 = +prompt('Сколько это будет стоить?');
+let service2 = prompt('Какой дополнительный тип услуги нужен?');
+let servicePrice2 = +prompt('Сколько это будет стоить?');
 
-console.log('//First task//');
-console.log('Тип данных title:', typeof title);
-console.log('Тип данных fullPrice:', typeof fullPrice);
-console.log('Тип данных adaptive:', typeof adaptive);
-console.log()
+let rollback = 30;
+let fullPrice = screenPrice + servicePrice1 + servicePrice2;
+const kickbackPercentage = fullPrice * (rollback / 100);
+let servicePercentPrice = Math.ceil(fullPrice - kickbackPercentage);
 
+console.log(servicePercentPrice);
 
-console.log('//Second task//');
-console.log("длину строки из переменной screens:", screens.length);
-
-
-console.log('//Third task//');
-const RUB = screenPrice
-const USD = screenPrice / 86
-const UAH = screenPrice / 1.94
-const CNY = screenPrice / 12.09
-console.log(`Стоимость верстки экранов: ${RUB} "рублей / ${USD.toFixed(2)} долларов / ${UAH.toFixed(2)} гривен / ${CNY.toFixed(2)} юаней`);
-
-console.log('//Fourth task//');
-console.log(screens.toLowerCase());
-console.log(screens.split(","));
-
-console.log('//Fifth task//');
-const kickbackPercentage = fullPrice * (rollback / 100)
-console.log("Процент отката посреднику:", kickbackPercentage, "%")
+if (fullPrice >= 30000) {
+    console.log('Даем скидку в 10 %');
+} else if
+    (fullPrice >= 15000 && fullPrice < 30000) {
+    console.log('Даем скидку в 5%');
+} else if (fullPrice < 15000 && fullPrice >= 0) {
+    console.log('Скидка не предусмотрена');
+} else if ((fullPrice < 0)) {
+    console.log('Что то пошло не так');
+}
