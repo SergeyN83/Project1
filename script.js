@@ -1,3 +1,5 @@
+'use strict';
+
 let title = prompt('Как называется ваш проект?');
 let screens = prompt('Какие типы экранов нужно разработать?');
 let screenPrice = +prompt('Сколько будет стоить данная работа?');
@@ -6,21 +8,55 @@ let service1 = prompt('Какой дополнительный тип услуг
 let servicePrice1 = +prompt('Сколько это будет стоить?');
 let service2 = prompt('Какой дополнительный тип услуги нужен?');
 let servicePrice2 = +prompt('Сколько это будет стоить?');
+let rollback = 10;
 
-let rollback = 30;
-let fullPrice = screenPrice + servicePrice1 + servicePrice2;
-const kickbackPercentage = fullPrice * (rollback / 100);
-let servicePercentPrice = Math.ceil(fullPrice - kickbackPercentage);
 
-console.log(servicePercentPrice);
-
-if (fullPrice >= 30000) {
-    console.log('Даем скидку в 10 %');
-} else if
-    (fullPrice >= 15000 && fullPrice < 30000) {
-    console.log('Даем скидку в 5%');
-} else if (fullPrice < 15000 && fullPrice >= 0) {
-    console.log('Скидка не предусмотрена');
-} else if ((fullPrice < 0)) {
-    console.log('Что то пошло не так');
+const showTypeOf = function (variable) {
+    console.log(variable, typeof variable);
 }
+
+const getRollbackMessage = function (price) {
+    if (price >= 30000) {
+        return 'Даем скидку в 10 %'
+    } else if
+        (price >= 15000 && price < 30000) {
+        return 'Даем скидку в 5%'
+    } else if (price < 15000 && price >= 0) {
+        return 'Скидка не предусмотрена'
+    } else if ((price < 0)) {
+        return 'Что то пошло не так'
+    }
+}
+
+const getAllServicePrices = function (servicePrice1, servicePrice2) {
+    return servicePrice1 + servicePrice2
+}
+
+const allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
+
+function getFullPrice(screenPrice, allServicePrices) {
+    return screenPrice + allServicePrices
+}
+
+const fullPrice = getFullPrice(screenPrice, allServicePrices)
+
+function getTitle(str) {
+    if (!str) return ''
+    if (str.length === 0) return ''
+    return str[0].toUpperCase() + str.slice(1).toLowerCase();
+}
+
+function getServicePercentPrices() {
+    return Math.ceil(fullPrice - (fullPrice * (rollback / 100)))
+}
+
+const servicePercentPrice = getServicePercentPrices(fullPrice)
+
+
+showTypeOf(title)
+showTypeOf(screenPrice)
+showTypeOf(adaptive)
+
+console.log(screens);
+console.log(getRollbackMessage(fullPrice));
+console.log(servicePercentPrice);
